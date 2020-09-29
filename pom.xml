@@ -132,6 +132,21 @@
           <warSourceDirectory>webapp</warSourceDirectory>
         </configuration>
       </plugin>
+      
+      
+      <!-- Tomcat plugin -->  
+		<plugin>  
+		 <groupId>org.apache.tomcat.maven</groupId>  
+		 <artifactId>tomcat7-maven-plugin</artifactId>  
+		 <version>2.2</version>  
+		 <configuration>  
+			  <url>http://52.15.94.253/manager/text</url>  
+			  <server>TomcatServer</server>   
+			  <username>admin</username>  
+			  <password>password2</password>   
+		 </configuration>   
+		</plugin>   
+      
     </plugins>
   </build>
 </project>
