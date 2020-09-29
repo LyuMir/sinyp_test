@@ -538,40 +538,6 @@ var ff = 0;
   // }
 
   function excelEX(){
-    // $('#excelForm').children('input[name="starter"]').val($('#startP').text());
-    // $('#excelForm').children('input[name="starter2"]').val($('#startP2').text());
-    //   $('#excelForm').children('input[name="ender"]').val($('#endP').text());
-    //   $('#excelForm').children('input[name="ender2"]').val($('#endP2').text());
-    //
-    //   var ways = $('.stopovers');
-    //   for (var i = 0; i < ways.length - 1; i++) {
-    //     $('#excelForm').children('input[name="waypoint"]').eq(i).val(ways[i].children('.stopover').text());
-    //       $('#excelForm').children('input[name="waypoint2"]').eq(i).val(ways[i].children('.stopover2').text());
-    //   }
-    //
-    //   $('#excelForm').children('distance0').val($('span.distance0').text());
-    //   $('#excelForm').children('duration0').val($('span.duration0').text());
-    //   $('#excelForm').submit();
-
-    //
-
-    // var data0 = [];
-    // data0.push({'startPoint' : $('#startP').text()});
-    // data0.push({'startPoint2' : $('#startP2').text()});
-    // data0.push({'endPoint' : $('#endP').text()});
-    // data0.push({'endPoint2' : $('#endP2').text()});
-    //   var ways = $('.stopovers');
-    // for (var i = 0; i < ways.length - 1; i++) {
-    //   // data0.push((i + 1) + 'middle :' + ways[i].children('.stopover').text());
-    //   // data0.push((i + 1) + 'middle2 :' + ways[i].children('.stopover2').text());
-    //     data0.push({'middle' : ways.eq(i).children('.stopover').text()});
-    //     data0.push({'middle2' : ways.eq(i).children('.stopover2').text()});
-    // }
-    // data0.push({'distance': $('span.distance0').text()}); //경로 거리
-    // data0.push({'duration': $('span.duration0').text()}); //예상 시간
-
-    // var data00 = JSON.stringify(data0);
-
 
     var data00 = {
       'startPoint' : $('#startP').text(),
@@ -582,13 +548,20 @@ var ff = 0;
       'duration': $('span.duration0').text(),
     };
 
-    var ways = $('.stopovers');
+    var ways = $('tr.stopovers');
+    var mm1 = '';
+    var mm2 = '';
     for (var i = 0; i < ways.length - 1; i++) {
-      $.extend(data00,{
-          'middle' : ways.eq(i).children('.stopover').text(),
-          'middle2' : ways.eq(i).children('.stopover2').text()
-      });
+      mm1 = mm1 + ' // ' + ways.eq(i).children('.stopover').text();
+      mm2 = mm2 + ' // ' + ways.eq(i).children('.stopover2').text();
     }
+      $.extend(data00,{
+          'middle' : mm1,
+          'middle2' : mm2
+      });
+
+      alert(data00.middle);
+    alert(data00.middle2);
 
         // alert(data00);
         // alert(data00.startPoint);

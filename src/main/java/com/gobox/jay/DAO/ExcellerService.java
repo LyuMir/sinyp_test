@@ -21,7 +21,7 @@ import com.gobox.jay.DTO.Points;
 
 public class ExcellerService {
    public static void writeExcelFile(Points points) throws EncryptedDocumentException, IOException {
-        String filePath = "경로.xlsx";    // 저장할 파일 경로
+        String filePath = "경로"+System.currentTimeMillis()+".xlsx";    // 저장할 파일 경로
         //
         
         FileOutputStream fos = new FileOutputStream(filePath);
@@ -51,13 +51,20 @@ public class ExcellerService {
         curRow.createCell(1).setCellValue(points.getEndPoint());
         curRow.createCell(2).setCellValue(points.getEndPoint2());
         
-        System.out.println(points.getMiddle().size());
-        int row = points.getMiddle().size();    // 경로 크기
-        for (int i = 3; i < row+3; i++) {
-            curRow = sheet.createRow(i);    // row 생성
-            curRow.createCell(0).setCellValue("경유지"+(i-2));    // row에 각 cell 저장
-            curRow.createCell(1).setCellValue(points.getMiddle().get(i-3));
-            curRow.createCell(2).setCellValue(points.getMiddle2().get(i-3));
+        int row = points.getMiddle().get(0).split(" // ").length;    // 경로 크기
+        
+        System.out.println(row);
+        String [] stops = points.getMiddle().get(0).split(" // ");
+        System.out.println(stops[row -1]);
+        String [] stops2 = points.getMiddle2().get(0).split(" // ");
+        System.out.println(stops2[0]);
+        System.out.println(points.getMiddle().get(0));
+        System.out.println(points.getMiddle2().get(0));
+        for (int i = 1; i < row; i++) {
+            curRow = sheet.createRow(i+2);    // row 생성
+            curRow.createCell(0).setCellValue("경유지"+(i));    // row에 각 cell 저장
+            curRow.createCell(1).setCellValue(stops[i]);
+            curRow.createCell(2).setCellValue(stops2[i]);
         }
         
         workbook.write(fos);
